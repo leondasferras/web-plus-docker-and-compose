@@ -8,6 +8,8 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 import { UsersModule } from 'src/users/users.module';
 import { LocalStrategy } from './strategies/local.strategy';
 import { HashModule } from 'src/hash/hash.module';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 @Module({
   controllers: [AuthController],
@@ -21,7 +23,7 @@ import { HashModule } from 'src/hash/hash.module';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         inject: [ConfigService],
-        secret: 'jwtSecret',
+        secret: process.env.JWT_SECRET,
         signOptions: { expiresIn: '1d' },
       }),
     }),
