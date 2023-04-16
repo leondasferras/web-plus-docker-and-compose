@@ -1,8 +1,8 @@
 module.exports = {
   apps: [
     {
-      name: 'kpd-api',
-      script: './dist/src/main.js',
+      name: 'backend',
+      script: './dist/main.js',
     },
   ],
 };

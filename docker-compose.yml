@@ -13,9 +13,9 @@ services:
     container_name: backend
     build: ./backend
     networks:
-      - api-db
+      - db
     env_file:
-      - ./.env
+      - .env
     restart:
       on-failure
     ports:
@@ -25,18 +25,19 @@ services:
 
   database:
     container_name: postgres
-    image: postgres:12
+    image: postgres:12.12-alpine
     networks:
-      - api-db
+      - db
     env_file:
-      - ./.env
+      - .env
     restart:
       on-failure
     volumes:
-      - pg_data:/var/lib/postgresql/data/pgdata
+      - pg-data:/var/lib/postgresql/data/pgdata
 
 volumes:
-  pg_data:
+  pg-data:
+    driver: local
 
 networks:
-  db: {}
+  db:
